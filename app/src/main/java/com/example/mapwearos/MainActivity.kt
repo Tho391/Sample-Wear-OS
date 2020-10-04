@@ -36,7 +36,8 @@ class MainActivity : FragmentActivity() {
 
         //setUpButton()
 
-        requestLocationViaFuseLocationClient()
+        //requestLocationViaFuseLocationClient()
+
     }
 
     private fun setUpButton() {
@@ -53,8 +54,8 @@ class MainActivity : FragmentActivity() {
 
         val locationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = 5 * 1000
-            fastestInterval = 2 * 1000
+            //interval = 5 * 1000
+            //fastestInterval = 2 * 1000
         }
 
 //        fusedLocationProviderClient.lastLocation
@@ -105,6 +106,10 @@ class MainActivity : FragmentActivity() {
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync {
             googleMap = it
+
+            googleMap.setOnMapClickListener {
+                requestLocationViaFuseLocationClient()
+            }
         }
     }
 }
